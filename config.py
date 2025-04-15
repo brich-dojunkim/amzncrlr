@@ -17,19 +17,19 @@ BROWSER = {
     "headless": False,  # 헤드리스 모드 여부
     "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36",
     "window_size": (1920, 1080),
-    "implicitly_wait": 10,  # 암시적 대기 시간(초)
-    "page_load_timeout": 30,  # 페이지 로드 타임아웃(초)
+    "implicitly_wait": 3,  # 암시적 대기 시간(초) - 값 축소
+    "page_load_timeout": 15,  # 페이지 로드 타임아웃(초) - 값 축소
 }
 
 # 크롤링 설정
 CRAWLING = {
     "delay": {
-        "min": 1.5,  # 최소 지연 시간(초)
-        "max": 3.5,  # 최대 지연 시간(초)
+        "min": 0.5,  # 최소 지연 시간(초) - 값 축소
+        "max": 1.5,  # 최대 지연 시간(초) - 값 축소
     },
     "retry": {
-        "max_attempts": 3,  # 최대 재시도 횟수
-        "backoff_factor": 2,  # 재시도 간격 증가 인자
+        "max_attempts": 2,  # 최대 재시도 횟수 - 값 축소
+        "backoff_factor": 1.5,  # 재시도 간격 증가 인자 - 값 축소
     },
     "max_products": 100,  # 스토어당 최대 상품 수집 수
     "max_reviews": 100,  # 상품당 최대 리뷰 수집 수
