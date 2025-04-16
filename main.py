@@ -116,6 +116,7 @@ def crawl_store_by_url(store_url, args, browser_manager, db_manager):
     
     return True
 
+# crawl_single_product 함수 수정 (개별 CSV 생성 부분 제거)
 def crawl_single_product(product_url, args, browser_manager, db_manager):
     """단일 상품 크롤링"""
     # 상품 정보 크롤링
@@ -147,14 +148,13 @@ def crawl_single_product(product_url, args, browser_manager, db_manager):
             db_manager.save_reviews(reviews)
             print(f"{len(reviews)}개의 리뷰 저장 완료")
             
-            # 리뷰 CSV 내보내기
-            db_manager.export_reviews_to_csv(product.asin)
-            print(f"리뷰 데이터 CSV 내보내기 완료")
+            # 개별 리뷰 내보내기 코드 제거
         else:
             print("이 상품에 대한 리뷰를 찾을 수 없거나 수집할 수 없습니다.")
     
     return True
 
+# crawl_products_from_list 함수 수정 (마지막에 통합 리뷰 CSV 내보내기 추가)
 def crawl_products_from_list(product_urls, args, browser_manager, db_manager):
     """여러 상품 크롤링"""
     total_products = len(product_urls)
@@ -184,6 +184,10 @@ def crawl_products_from_list(product_urls, args, browser_manager, db_manager):
     # 성공적으로 크롤링한 상품 CSV 내보내기
     db_manager.export_products_to_csv()
     print("모든 상품 데이터 CSV 내보내기 완료")
+    
+    # 모든 리뷰를 하나의 CSV 파일로 내보내기 추가
+    db_manager.export_reviews_to_csv()
+    print("모든 리뷰 데이터를 통합 CSV 파일로 내보내기 완료")
     
     return success_count > 0
 
